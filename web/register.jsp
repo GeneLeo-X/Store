@@ -50,6 +50,9 @@ font {
 								placeholder="请输入用户名" name="username">
 						</div>
 					</div>
+					<!--注册信息失败提示-->
+					<%= request.getAttribute("msg") == null?  "" : request.getAttribute("msg") %>
+
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 						<div class="col-sm-6">

@@ -1,5 +1,6 @@
+<%@ page import="com.lixiuchun.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- 登录 注册 购物车... -->
 <div class="container-fluid">
@@ -11,10 +12,25 @@
 	</div>
 	<div class="col-md-3" style="padding-top:20px">
 		<ol class="list-inline">
-			<li><a href="login.jsp">登录</a></li>
-			<li><a href="register.jsp">注册</a></li>
-			<li><a href="cart.jsp">购物车</a></li>
-			<li><a href="order_list.jsp">我的订单</a></li>
+			<%
+				Object user = session.getAttribute("user");
+				if(user == null){
+					out.write("\t\t\t<li><a href=\"login.jsp\">登录</a></li>\n");
+					out.write("\t\t\t<li><a href=\"register.jsp\">注册</a></li>\n");
+					out.write("\t\t\t<li><a href=\"cart.jsp\">购物车</a></li>\n");
+					out.write("\t\t\t<li><a href=\"order_list.jsp\">我的订单</a></li>\n");
+
+
+				}else{
+					out.write("欢迎，" + ((User)user).getName());
+					out.write("\t\t\t<li><a href=\"cart.jsp\">购物车</a></li>\n");
+					out.write("\t\t\t<li><a href=\"order_list.jsp\">我的订单</a></li>\n");
+				}
+			%>
+<%--			<li><a href="login.jsp">登录</a></li>--%>
+<%--			<li><a href="register.jsp">注册</a></li>--%>
+<%--			<li><a href="cart.jsp">购物车</a></li>--%>
+<%--			<li><a href="order_list.jsp">我的订单</a></li>--%>
 		</ol>
 	</div>
 </div>
