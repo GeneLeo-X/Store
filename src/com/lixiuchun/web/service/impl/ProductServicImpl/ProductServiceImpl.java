@@ -1,9 +1,9 @@
-package com.lixiuchun.service.impl.ProductServicImpl;
+package com.lixiuchun.web.service.impl.ProductServicImpl;
 
-import com.lixiuchun.bean.Product;
-import com.lixiuchun.dao.ProductDao.ProductDao;
-import com.lixiuchun.service.ProductService;
-import com.lixiuchun.vo.PageVo;
+import com.lixiuchun.web.bean.Product;
+import com.lixiuchun.web.dao.ProductDao.ProductDao;
+import com.lixiuchun.web.service.ProductService;
+import com.lixiuchun.web.vo.PageVo;
 
 import java.util.List;
 
@@ -41,5 +41,10 @@ public class ProductServiceImpl implements ProductService  {
 
         return pageVo;
 
+    }
+
+    @Override
+    public Product getProductByPid(String pid) {
+        return productDao.getProductByPid(pid);
     }
 }

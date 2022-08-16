@@ -1,23 +1,18 @@
-package com.lixiuchun.controller;
+package com.lixiuchun.web.controller;
 
 
-import com.lixiuchun.bean.Product;
-import com.lixiuchun.service.ProductService;
-import com.lixiuchun.service.impl.ProductServicImpl.ProductServiceImpl;
-import com.lixiuchun.util.C3p0Pool;
-import com.lixiuchun.vo.PageVo;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import com.lixiuchun.web.service.ProductService;
+import com.lixiuchun.web.service.impl.ProductServicImpl.ProductServiceImpl;
+
+import com.lixiuchun.web.vo.PageVo;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
-import java.util.List;
+
 
 @WebServlet("/productList")
 public class ProductListServlet extends HttpServlet {

@@ -1,4 +1,4 @@
-package com.lixiuchun.bean;
+package com.lixiuchun.web.bean;
 
 import javax.xml.crypto.Data;
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 CREATE TABLE `product` (
   `pid` varchar(64) NOT NULL,
   `pname` varchar(50) default NULL,
-  `market_price` double default NULL,
+  `marketet_price` double default NULL,
   `shop_price` double default NULL,
   `pimage` varchar(200) default NULL,
   `pdate` date default NULL,
@@ -18,9 +18,9 @@ CREATE TABLE `product` (
  */
 
 public class Product implements Serializable {
-    private String pid;
+    private Long pid;
     private String pname;
-    private Double mark_price;
+    private Double market_price;
     private Double shop_price;
     private String pimage;
     private Data pdate;
@@ -32,24 +32,24 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String pid, String pname, Double mark_price, Double shop_price, String pimage, Data pdate, Integer is_hot, String pdesc, Integer pflag, String cid) {
+    public Product(Long pid, String pname, Double market_price, Double shop_price, String pimage, Data pdate, Integer is_hot, String pdesc, Integer pflag, String cid) {
         this.pid = pid;
         this.pname = pname;
-        this.mark_price = mark_price;
+        this.market_price = market_price;
         this.shop_price = shop_price;
         this.pimage = pimage;
         this.pdate = pdate;
         this.is_hot = is_hot;
-        this.pdesc = pdesc;
+        this.pdesc = pdesc; //商品描述
         this.pflag = pflag;
         this.cid = cid;
     }
 
-    public String getPid() {
+    public Long getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(Long pid) {
         this.pid = pid;
     }
 
@@ -61,12 +61,12 @@ public class Product implements Serializable {
         this.pname = pname;
     }
 
-    public Double getMark_price() {
-        return mark_price;
+    public Double getMarket_price() {
+        return market_price;
     }
 
-    public void setMark_price(Double mark_price) {
-        this.mark_price = mark_price;
+    public void setMarket_price(Double market_price) {
+        this.market_price = market_price;
     }
 
     public Double getShop_price() {
@@ -130,7 +130,7 @@ public class Product implements Serializable {
         return "Product{" +
                 "pid='" + pid + '\'' +
                 ", pname='" + pname + '\'' +
-                ", mark_price=" + mark_price +
+                ", market_price=" + market_price +
                 ", shop_price=" + shop_price +
                 ", pimage='" + pimage + '\'' +
                 ", pdate=" + pdate +

@@ -1,6 +1,6 @@
-package com.lixiuchun.vo;
+package com.lixiuchun.web.vo;
 
-import com.lixiuchun.bean.Product;
+import com.lixiuchun.web.bean.Product;
 
 import java.util.List;
 

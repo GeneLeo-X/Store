@@ -1,15 +1,13 @@
-package com.lixiuchun.dao.ProductDao;
+package com.lixiuchun.web.dao.ProductDao;
 
-import com.lixiuchun.bean.Product;
-import com.lixiuchun.util.C3p0Pool;
-import com.lixiuchun.vo.PageVo;
+import com.lixiuchun.web.bean.Product;
+import com.lixiuchun.common.util.C3p0Pool;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductDao {
@@ -68,6 +66,15 @@ public class ProductDao {
         try {
             return qr.query(sql, new BeanListHandler<>(Product.class),(currentPage-1)*maxCount,maxCount);
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Product getProductByPid(String pid) {
+        String sql = "select p.pid, p.pname ,p.pimage,p.shop_price ,p.market_price , p.pdesc from product  p where p.pid =?";
+        try {
+            return qr.query(sql,new BeanHandler<>(Product.class),pid);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

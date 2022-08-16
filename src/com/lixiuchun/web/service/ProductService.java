@@ -1,7 +1,7 @@
-package com.lixiuchun.service;
+package com.lixiuchun.web.service;
 
-import com.lixiuchun.bean.Product;
-import com.lixiuchun.vo.PageVo;
+import com.lixiuchun.web.bean.Product;
+import com.lixiuchun.web.vo.PageVo;
 
 import java.util.List;
 
@@ -10,4 +10,6 @@ public interface ProductService {
     public List<Product> getProductList();
 
     PageVo getPageVoByCurrentPageAndMaxCount(Integer currentPage, Integer maxCount);
+
+    Product getProductByPid(String pid);
 }

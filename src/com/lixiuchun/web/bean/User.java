@@ -1,4 +1,4 @@
-package com.lixiuchun.bean;
+package com.lixiuchun.web.bean;
 /*
 `uid` varchar(32) NOT NULL,
   `username` varchar(20) default NULL,

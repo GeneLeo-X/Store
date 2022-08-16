@@ -1,4 +1,4 @@
-<%@ page import="com.lixiuchun.bean.User" %>
+<%@ page import="com.lixiuchun.web.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,8 +1,7 @@
-package com.lixiuchun.controller;
+package com.lixiuchun.web.controller;
 
-import com.lixiuchun.bean.User;
-import com.lixiuchun.util.C3p0Pool;
-import com.mchange.v2.beans.BeansUtils;
+import com.lixiuchun.web.bean.User;
+import com.lixiuchun.common.util.C3p0Pool;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.dbutils.QueryRunner;
 
