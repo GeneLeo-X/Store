@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,29 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function isLogin() {//判断是否登录
+		//该页面还没有用户登录
+		<c:if test="${user == null}">
+			window.location.href = "${pageContext.request.contextPath}/login.jsp";
+		</c:if>
+
+		<c:if test="${user != null}">
+
+			$.ajax({
+				url: "${pageContext.request.contextPath}/saveCart",
+				data: {"pid":'${product.pid}' , "uid":'${user.uid}' , "count":$("#quantity").val()},
+				success:function (data) {
+					alert(data);
+                } ,
+				dataType : "text",
+				type : "post"
+			});
+		</c:if>
+
+    }
+</script>
+
 <!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
@@ -73,7 +97,7 @@ body {
 						</div>
 
 						<div style="margin: 20px 0 10px 0;; text-align: center;">
-							<a href="cart.htm"> <input
+							<a href="javascript:void(0)" onclick="isLogin()"> <input
 								style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
 								value="加入购物车" type="button">
 							</a> &nbsp;收藏商品

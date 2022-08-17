@@ -56,17 +56,15 @@
 		<ol class="list-inline">
 			<%
 				Object user = session.getAttribute("user");
-				if(user == null){
-					out.write("\t\t\t<li><a href=\"login.jsp\">登录</a></li>\n");
-					out.write("\t\t\t<li><a href=\"register.jsp\">注册</a></li>\n");
-					out.write("\t\t\t<li><a href=\"cart.jsp\">购物车</a></li>\n");
-					out.write("\t\t\t<li><a href=\"order_list.jsp\">我的订单</a></li>\n");
-
-
-				}else{
-					out.write("欢迎，" + ((User)user).getName());
-					out.write("\t\t\t<li><a href=\"cart.jsp\">购物车</a></li>\n");
-					out.write("\t\t\t<li><a href=\"order_list.jsp\">我的订单</a></li>\n");
+				if(user == null) {
+					out.write("<li><a href=\"login.jsp\">登录</a></li>");
+					out.write("<li><a href=\"register.jsp\">注册</a></li>");
+					out.write("<li><a href=\""+request.getContextPath()+"/login.jsp\">购物车</a></li>");
+					out.write("<li><a href=\"order_list.jsp\">我的订单</a></li>");
+				} else {
+					out.write("欢迎," + ((User)user).getName());
+					out.write("<li><a href=\""+request.getContextPath()+"/cartList?uid="+((User) user).getUid()+"\">购物车</a></li>");
+					out.write("<li><a href=\"order_list.jsp\">我的订单</a></li>");
 				}
 			%>
 <%--			<li><a href="login.jsp">登录</a></li>--%>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,36 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 		<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+			//val(): input标签的输入内容获取  html() : 其它标签获取内容的
+			function couPrice(obj , shopPrice , id) {
+                $("#cou_price"+ id).html($(obj).val() * shopPrice);
+                
+                $.ajax({
+					url: "${pageContext.request.contextPath}/updateCart",
+					data: {"count":$(obj).val() , "id":id} ,
+					success: function (data) {
+						
+                    },
+					dataType:"text"
+				});
+            }
+
+            function delCartById(id) {
+			    var b = confirm("您确定要删除该商品吗？");
+			    if(b){
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/deleteCart",
+                        data: {"id":id} ,
+                        success: function (data) {
+                            window.location.href = "${pageContext.request.contextPath}/cartList?uid=${user.uid}"
+                        },
+                        dataType:"text"
+                    });
+				}
+            }
+		</script>
 		<!-- 引入自定义css文件 style.css -->
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 		<style>
@@ -49,27 +80,31 @@
 								<th>小计</th>
 								<th>操作</th>
 							</tr>
-							<tr class="active">
-								<td width="60" width="40%">
-									<input type="hidden" name="id" value="22">
-									<img src="./image/dadonggua.jpg" width="70" height="60">
-								</td>
-								<td width="30%">
-									<a target="_blank"> 有机蔬菜      大冬瓜...</a>
-								</td>
-								<td width="20%">
-									￥298.00
-								</td>
-								<td width="10%">
-									<input type="text" name="quantity" value="1" maxlength="4" size="10">
-								</td>
-								<td width="15%">
-									<span class="subtotal">￥596.00</span>
-								</td>
-								<td>
-									<a href="javascript:;" class="delete">删除</a>
-								</td>
-							</tr>
+							<c:forEach items="${cartList}" var="cp">
+
+
+								<tr class="active">
+									<td width="60" width="40%">
+										<input type="hidden" name="id" value="22">
+										<img src="${cp.pimage}" width="70" height="60">
+									</td>
+									<td width="30%">
+										<a target="_blank"> ${cp.pname}</a>
+									</td>
+									<td width="20%">
+										￥${cp.shopPrice}
+									</td>
+									<td width="10%">
+										<input type="text" name="quantity" value="${cp.count}" onkeyup="couPrice(this , ${cp.shopPrice} , ${cp.id})" maxlength="4" size="10">
+									</td>
+									<td width="15%">
+										￥<span class="subtotal" id="cou_price${cp.id}">${cp.shopPrice * cp.count}</span>
+									</td>
+									<td>
+										<a href="javascript:void(0);" onclick="delCartById(${cp.id})" class="delete">删除</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
