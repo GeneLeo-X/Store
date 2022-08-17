@@ -1,4 +1,4 @@
-package com.lixiuchun.web.dao.ProductDao;
+package com.lixiuchun.web.dao;
 
 import com.lixiuchun.common.Product;
 import com.lixiuchun.common.util.C3p0Pool;

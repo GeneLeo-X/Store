@@ -3,7 +3,7 @@ package com.lixiuchun.web.controller;
 
 
 import com.lixiuchun.web.service.ProductService;
-import com.lixiuchun.web.service.impl.ProductServicImpl.ProductServiceImpl;
+import com.lixiuchun.web.service.impl.ProductServiceImpl;
 
 import com.lixiuchun.web.vo.PageVo;
 import javax.servlet.ServletException;

@@ -1,7 +1,7 @@
-package com.lixiuchun.web.service.impl.ProductServicImpl;
+package com.lixiuchun.web.service.impl;
 
 import com.lixiuchun.common.Product;
-import com.lixiuchun.web.dao.ProductDao.ProductDao;
+import com.lixiuchun.web.dao.ProductDao;
 import com.lixiuchun.web.service.ProductService;
 import com.lixiuchun.web.vo.PageVo;
 

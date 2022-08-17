@@ -11,6 +11,36 @@
 <!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
+<script type="text/javascript">
+
+	function checkUsername(obj){
+		//alert(obj.value);//显示输入的内容
+		//alert($(obj).val())//显示输入的内容
+
+		var username = $(obj).val();
+
+
+		$.ajax({
+			type: "POST",
+			url: "${pageContext.request.contextPath}/checkUser",
+			data: {"username":username},
+			success: function(msg){
+				if(msg.Existed=="1"){
+					$("#tips").html("<font color='red'>用户已经存在</font>");
+				}
+				else{
+					$("#tips").html("<font color='green'>该用户名可以使用</font>");
+				}
+			},
+			dataType:"json"
+		});
+
+
+	}
+
+
+</script>
+
 <style>
 body {
 	margin-top: 20px;
@@ -47,7 +77,11 @@ font {
 						<label for="username" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="username"
-								placeholder="请输入用户名" name="username">
+								placeholder="请输入用户名" name="username" onblur="checkUsername(this)"><!--失焦事件 （内容框不高亮，正在编辑其他内容框）-->
+							<!--this为input的内容-->
+
+							<div id="tips" style="color: red"></div>
+
 						</div>
 					</div>
 					<!--注册信息失败提示-->
