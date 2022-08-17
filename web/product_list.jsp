@@ -230,11 +230,11 @@ body {
 
 			<c:forEach 	begin="1" end="${pageVo.totalPages}" var="pno">
 				<c:if test="${pno == pageVo.currentPage}">
-					<li class="active"><a href="${pageContext.request.contextPath}/productList?currentPage=${pno}">${pno}</a></li>
+					<li class="active"><a href="${pageContext.request.contextPath}/productList?currentPage=${pno}&cid=${pageVo.cid}">${pno}</a></li>
 				</c:if>
 
 				<c:if test="${pno != pageVo.currentPage}">
-					<li><a href="${pageContext.request.contextPath}/productList?currentPage=${pno}">${pno}</a></li>
+					<li><a href="${pageContext.request.contextPath}/productList?currentPage=${pno}&cid=${pageVo.cid}">${pno}</a></li>
 				</c:if>
 			</c:forEach>
 

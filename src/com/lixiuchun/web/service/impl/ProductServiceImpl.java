@@ -57,4 +57,19 @@ public class ProductServiceImpl implements ProductService  {
     public List<Product> getProductsByWord(String word) {
         return productDao.getProductsByWord(word);
     }
+
+    @Override
+    public PageVo getPageVoByCurrentPageAndMaxCount(Integer currentPage, Integer maxCount, String cid) {
+        PageVo pageVo = new PageVo();
+        pageVo.setCurrentPage(currentPage);
+        pageVo.setCid(cid);
+        //获取数据库商品数量 / maxCount  需要向上取整 Math.ceil() 天花板
+        Integer productCount = productDao.getProductCountByCid(cid);
+        //计算总页数
+        pageVo.setTotalPages((int)Math.ceil(productCount * 1.0/ maxCount));
+
+        List<Product> productList = productDao.getProductListByCurrentPageAndMaxCountAndCid(currentPage , maxCount , cid);
+        pageVo.setProductList(productList);
+        return pageVo;
+    }
 }

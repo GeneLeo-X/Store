@@ -1,20 +1,21 @@
 package com.lixiuchun.web.vo;
 
+
+
 import com.lixiuchun.common.Product;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageVo {
+public class PageVo implements Serializable{
 
     private List<Product> productList;
+
     private Integer currentPage;
+
     private Integer totalPages;
 
-
-
-
-    public PageVo() {
-    }
+    private String cid;
 
     public List<Product> getProductList() {
         return productList;
@@ -40,12 +41,11 @@ public class PageVo {
         this.totalPages = totalPages;
     }
 
-    @Override
-    public String toString() {
-        return "PageVo{" +
-                "productList=" + productList +
-                ", currentPage=" + currentPage +
-                ", totalPages=" + totalPages +
-                '}';
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 }
