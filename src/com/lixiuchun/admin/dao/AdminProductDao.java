@@ -1,10 +1,11 @@
 package com.lixiuchun.admin.dao;
 
-import com.lixiuchun.admin.dto.Product;
 import com.lixiuchun.admin.vo.QueryVo;
 
+import com.lixiuchun.common.Product;
 import com.lixiuchun.common.util.C3p0Pool;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
@@ -69,4 +70,48 @@ public class AdminProductDao {
         return Collections.EMPTY_LIST;
 
     }
+
+    public Integer deleteProductByPid(String pid) {
+            String sql = "delete from product where pid = ?";
+
+            try {
+                return qr.update(sql , pid);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+
+    public Product getProductByPid(String pid) {
+        String sql ="select p.pid , p.pname , p.pimage , p.shop_price as shopPrice " +
+                ", p.market_price marketPrice " +
+                ", p.is_hot isHot ,p.pdesc ,p.cid from product p  where p.pid=?";;
+        try {
+            return qr.query(sql,new BeanHandler<>(Product.class),pid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+    /**
+     * 更新商品信息
+     * @param product
+     * @return
+     */
+
+    public Integer updateProduct(Product product) {
+        String sql = "update product set pname = ? , pdesc = ? , cid = ? , is_hot = ? " +
+                ", shop_price = ? , market_price = ? where pid = ?";
+
+        try {
+            return qr.update(sql , product.getPname() , product.getPdesc() , product.getCid() , product.getIsHot()
+                    , product.getShopPrice() , product.getMarketPrice() , product.getPid());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

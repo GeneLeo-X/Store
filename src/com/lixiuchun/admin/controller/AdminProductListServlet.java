@@ -1,13 +1,13 @@
 package com.lixiuchun.admin.controller;
 
 import com.lixiuchun.admin.dto.Category;
-import com.lixiuchun.admin.dto.Product;
 import com.lixiuchun.admin.service.impl.AdminProductServiceImpl;
 import com.lixiuchun.admin.service.AdminProductService;
 import com.lixiuchun.admin.service.CategoryService;
 import com.lixiuchun.admin.service.impl.CategoryServiceImpl;
 import com.lixiuchun.admin.vo.QueryVo;
 
+import com.lixiuchun.common.Product;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
