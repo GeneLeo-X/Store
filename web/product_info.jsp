@@ -53,8 +53,8 @@ body {
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
-						亿家价: <strong style="color: #ef0101;">￥：${product.shop_price}元/份</strong> 参 考 价：
-						<del>￥${product.market_price}元/份</del>
+						亿家价: <strong style="color: #ef0101;">￥：${product.shopPrice}元/份</strong> 参 考 价：
+						<del>￥${product.marketPrice}元/份</del>
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">

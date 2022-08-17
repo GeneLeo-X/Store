@@ -1,6 +1,6 @@
 package com.lixiuchun.web.dao.ProductDao;
 
-import com.lixiuchun.web.bean.Product;
+import com.lixiuchun.common.Product;
 import com.lixiuchun.common.util.C3p0Pool;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -28,7 +28,7 @@ public class ProductDao {
     public List<Product> getProductList() {
         try {
 
-            String sql = "select p.pid ,p.pname,p.pimage,p.shop_price from product p";
+            String sql = "select p.pid ,p.pname,p.pimage,p.shop_price as shopPrice from product p";
             QueryRunner qr = new QueryRunner(C3p0Pool.getDataSource());
             return  qr.query(sql, new BeanListHandler<>(Product.class));
         } catch (SQLException e) {
@@ -62,7 +62,7 @@ public class ProductDao {
     }
 
     public List<Product> getProductListByCurrentPageAndMaxCount(Integer currentPage, Integer maxCount) {
-        String sql = "select p.pid ,p.pname,p.pimage,p.shop_price from product p limit ?,?";
+        String sql = "select p.pid ,p.pname,p.pimage,p.shop_price as shopPrice from product p limit ?,?";
         try {
             return qr.query(sql, new BeanListHandler<>(Product.class),(currentPage-1)*maxCount,maxCount);
 
@@ -72,7 +72,7 @@ public class ProductDao {
     }
 
     public Product getProductByPid(String pid) {
-        String sql = "select p.pid, p.pname ,p.pimage,p.shop_price ,p.market_price , p.pdesc from product  p where p.pid =?";
+        String sql = "select p.pid, p.pname ,p.pimage,p.shop_price as shopPrice ,p.market_price as marketPrice , p.pdesc from product  p where p.pid =?";
         try {
             return qr.query(sql,new BeanHandler<>(Product.class),pid);
         } catch (SQLException e) {

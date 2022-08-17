@@ -20,7 +20,7 @@ public class CategoryListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         categoryService = new CategoryServiceImpl();
-        List<Category> categoryList = categoryService.getCatgoryList();
+        List<Category> categoryList = categoryService.getCategoryList();
 
         //刷新列表页面的数据
         req.setAttribute("categoryList",categoryList);

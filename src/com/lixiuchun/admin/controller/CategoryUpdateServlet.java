@@ -25,7 +25,7 @@ public class CategoryUpdateServlet extends HttpServlet {
         Integer rows = categoryService.updateCategory(cid, cname);
         if(rows > 0){
             //刷新数据
-            req.setAttribute("categoryList" , categoryService.getCatgoryList());
+            req.setAttribute("categoryList" , categoryService.getCategoryList());
             req.getRequestDispatcher("/admin/category/list.jsp").forward(req , resp);
         }
     }

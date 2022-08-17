@@ -1,6 +1,6 @@
 package com.lixiuchun.web.controller;
 
-import com.lixiuchun.web.bean.Product;
+import com.lixiuchun.common.Product;
 import com.lixiuchun.web.service.ProductService;
 import com.lixiuchun.web.service.impl.ProductServicImpl.ProductServiceImpl;
 

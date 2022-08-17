@@ -12,7 +12,7 @@ public interface CategoryService {
 
 
 
-    List<Category> getCatgoryList();
+    List<Category> getCategoryList();
 
 
     Integer addCategory(String cname);
@@ -20,4 +20,6 @@ public interface CategoryService {
     Category getCategoryByCid(String cid);
 
     Integer updateCategory(String cid, String cname);
+
+
 }

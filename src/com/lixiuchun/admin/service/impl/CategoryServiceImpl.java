@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
      * @return
      */
     @Override
-    public List<Category> getCatgoryList() {
+    public List<Category> getCategoryList() {
         return categoryDao.getCatgoryList();
     }
 
