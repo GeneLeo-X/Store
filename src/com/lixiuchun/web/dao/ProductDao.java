@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductDao {
@@ -78,5 +79,16 @@ public class ProductDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Product> getProductsByWord(String word) {
+        String sql = "select p.pname , p.pid from product p where p.pname like ? LIMIT 5";
+
+        try {
+            return qr.query(sql , new BeanListHandler<>(Product.class) , "%" + word + "%");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Collections.EMPTY_LIST;
     }
 }

@@ -2,6 +2,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
+
+<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function searchProductsByWord(obj) {
+		var word = $(obj).val();
+
+		var contentStr = "";
+		if(null != word && word != ""){//存在关键词在模糊查询
+			$.ajax({
+				url: "${pageContext.request.contextPath}/searchProduct",
+				data: {"word":word},
+				success:function (data) {
+					for(var i = 0 ; i < data.length ; i++){
+						//套上超链接，负责处理商品点击事件，跳转商品详情页，但注意：需要匹配正确的商品主键
+						contentStr += "<a href='${pageContext.request.contextPath}/productInfo?pid="+data[i].pid+"'><div style='font-size: 10px ; padding: 5px;' onmouseover='selectedFn(this)' " +
+								"onmouseout='unSelectedFn(this)'>" + data[i].pname + "</div></a>"
+					}
+					$("#prod_content").html(contentStr);
+					$("#prod_content").css("display" , "block");
+				} ,
+				type: "post",
+				dataType: "json"
+			});
+		}else{
+			$("#prod_content").css("display" , "none");
+		}
+	}
+
+	function selectedFn(obj) {
+		$(obj).css("background" , "#2aabd2");
+	}
+
+	function unSelectedFn(obj) {
+		$(obj).css("background" , "#ffffff");
+	}
+
+
+</script>
+
 <!-- 登录 注册 购物车... -->
 <div class="container-fluid">
 	<div class="col-md-4">
@@ -52,14 +93,18 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href=<%=request.getContextPath()%>"/productList">手机数码<span class="sr-only">(current)</span></a></li>
-					<li><a href="#">电脑办公</a></li>
-					<li><a href="#">化妆品</a></li>
-					<li><a href="#">鞋靴箱包</a></li>
+<%--					<li class="active"><a href=<%=request.getContextPath()%>"/productList">手机数码<span class="sr-only">(current)</span></a></li>--%>
+<%--					<li><a href="#">电脑办公</a></li>--%>
+<%--					<li><a href="#">化妆品</a></li>--%>
+<%--					<li><a href="#">鞋靴箱包</a></li>--%>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+					<div class="form-group" style="position: relative">
+						<input type="text" class="form-control" placeholder="Search" onkeyup="searchProductsByWord(this)"/>
+						<!--position : 让出位置，防止挤乱布局  z-index ： 图层设定，正整数越大，优先级越高-->
+						<div id="prod_content" style="width: 196px ; height: 220px ; background: white; margin-top: 2px ;
+							 display: none;
+						     position: absolute; z-index: 1000" ></div>
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>

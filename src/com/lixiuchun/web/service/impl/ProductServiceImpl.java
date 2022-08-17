@@ -47,4 +47,14 @@ public class ProductServiceImpl implements ProductService  {
     public Product getProductByPid(String pid) {
         return productDao.getProductByPid(pid);
     }
+
+    /**
+     * 根据word关键词模糊查询商品列表
+     * @param word
+     * @return
+     */
+    @Override
+    public List<Product> getProductsByWord(String word) {
+        return productDao.getProductsByWord(word);
+    }
 }
